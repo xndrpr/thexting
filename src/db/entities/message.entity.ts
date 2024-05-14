@@ -18,7 +18,7 @@ export class Message {
   text: string;
 
   @Column()
-  date: string;
+  createdAt: string;
 
   @OneToOne(() => User, (user) => user.id)
   @JoinColumn()

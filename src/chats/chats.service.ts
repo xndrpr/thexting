@@ -44,14 +44,10 @@ export class ChatsService {
 
     const chat = await this.chatRepository.findOne({
       where: [
-        { user: user },
-        { partner: partner },
-        { user: partner },
-        { partner: user },
+        { user: user, partner: partner },
+        { user: partner, partner: user },
       ],
     });
-    console.log(chat);
-
     if (chat) {
       throw new BadRequestException({ type: 'chat-exists' });
     }
