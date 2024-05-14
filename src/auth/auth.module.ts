@@ -10,7 +10,6 @@ import { User } from 'src/db/entities/user.entity';
 import { config } from 'dotenv';
 
 config();
-console.log(process.env.JWT_SECRET);
 @Module({
   imports: [
     JwtModule.register({

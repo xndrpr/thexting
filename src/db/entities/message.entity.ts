@@ -1,6 +1,7 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -8,7 +9,7 @@ import {
 import { User } from './user.entity';
 import { Chat } from './chat.entity';
 
-@Entity()
+@Entity({ name: 'messages' })
 export class Message {
   @PrimaryGeneratedColumn()
   id: number;
@@ -19,9 +20,11 @@ export class Message {
   @Column()
   date: string;
 
-  @OneToOne(() => User)
+  @OneToOne(() => User, (user) => user.id)
+  @JoinColumn()
   user: User;
 
-  @ManyToOne(() => Chat, (chat) => chat.id)
+  @ManyToOne(() => Chat, (chat) => chat.messages)
+  @JoinColumn()
   chat: Chat;
 }

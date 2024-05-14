@@ -5,7 +5,12 @@ export enum Gender {
   Female,
 }
 
-@Entity()
+export enum Role {
+  User = 'user',
+  Partner = 'partner',
+}
+
+@Entity({ name: 'users' })
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
@@ -21,6 +26,9 @@ export class User {
 
   @Column({ unique: true })
   email: string;
+
+  @Column({ default: Role.User })
+  role: Role;
 
   @Column()
   salt: string;

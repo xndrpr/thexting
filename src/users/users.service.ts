@@ -24,11 +24,19 @@ export class UsersService {
     return this.userRepository.save(newUser);
   }
 
-  findByEmail(email: string) {
+  async findByEmail(email: string) {
     return this.userRepository.findOne({ where: { email } });
   }
 
-  findById(id: number) {
+  async findById(id: number) {
     return this.userRepository.findOne({ where: { id } });
+  }
+
+  async findByIdChat(id: number) {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['chats'],
+    });
+    return user;
   }
 }

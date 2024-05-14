@@ -1,15 +1,26 @@
-import { Entity, ManyToMany, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  JoinColumn,
+  OneToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { User } from './user.entity';
 import { Message } from './message.entity';
 
-@Entity()
+@Entity({ name: 'chats' })
 export class Chat {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToMany(() => User)
-  users: User[];
+  @OneToOne(() => User, (user) => user.id)
+  @JoinColumn()
+  user: User;
 
-  @OneToMany(() => Message, (message) => message.chat, { cascade: true })
+  @OneToOne(() => User, (user) => user.id)
+  @JoinColumn()
+  partner: User;
+
+  @OneToMany(() => Message, (message) => message.chat)
   messages: Message[];
 }
