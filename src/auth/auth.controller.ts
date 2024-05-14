@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Get,
   HttpStatus,
   Post,
   Res,
   UnauthorizedException,
+  UseGuards,
 } from '@nestjs/common';
 import { SignUpDto } from 'src/dto/SignUp.dto';
 import { AuthService } from './auth.service';
@@ -12,6 +14,9 @@ import { SignInDto } from 'src/dto/SignIn.dto';
 import { RefreshToken } from 'src/decorators/refresh-token.decorator';
 import { CookieService } from './cookie.service';
 import { Response } from 'express';
+import { AuthGuard } from './auth.guard';
+import { Session } from 'src/decorators/session.decorator';
+import { SessionDto } from 'src/dto/Session.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -79,6 +84,16 @@ export class AuthController {
       message: 'Success',
       status: HttpStatus.OK,
       data: session.accessToken,
+    };
+  }
+
+  @Get('session')
+  @UseGuards(AuthGuard)
+  async getSession(@Session() session: SessionDto) {
+    return {
+      message: 'Success',
+      status: HttpStatus.OK,
+      data: session,
     };
   }
 }
