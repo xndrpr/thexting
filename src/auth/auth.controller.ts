@@ -67,7 +67,7 @@ export class AuthController {
     };
   }
 
-  @Post('refresh')
+  @Get('refresh')
   async refresh(
     @Res({ passthrough: true }) res: Response,
     @RefreshToken() refreshToken: string,
