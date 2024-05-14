@@ -1,21 +1,12 @@
-import {
-  IsDate,
-  IsEmail,
-  IsNotEmpty,
-  IsNumber,
-  IsString,
-} from 'class-validator';
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 import { Gender } from 'src/db/entities/user.entity';
 
-export class CreateUserDto {
+export class SignUpDto {
   @IsString()
   nickname: string;
 
-  @IsNumber()
-  age: number;
-
-  // @IsDate()
-  dateOfBirth: Date;
+  @IsNotEmpty()
+  dateOfBirth: string;
 
   @IsNumber()
   gender: Gender;

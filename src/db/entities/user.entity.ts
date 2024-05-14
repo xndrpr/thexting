@@ -14,10 +14,7 @@ export class User {
   nickname: string;
 
   @Column()
-  age: number;
-
-  @Column()
-  dateOfBirth: Date;
+  dateOfBirth: string;
 
   @Column()
   gender: Gender;
