@@ -1,8 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Chat } from 'src/db/entities/chat.entity';
 import { CreateChatDto } from 'src/dto/CreateChat.dto';
 import { SessionDto } from 'src/dto/Session.dto';
+import { SocketsStoreService } from 'src/sockets-store/sockets-store.service';
 import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 
@@ -11,6 +13,7 @@ export class ChatsService {
   constructor(
     @InjectRepository(Chat) private readonly chatRepository: Repository<Chat>,
     private readonly usersService: UsersService,
+    private readonly eventEmitter: EventEmitter2,
   ) {}
 
   async getChats(userId: number) {
@@ -74,6 +77,11 @@ export class ChatsService {
       partner: partner,
     };
 
-    return await this.chatRepository.save(newChat);
+    await this.chatRepository.save(newChat);
+
+    const socket1 = SocketsStoreService.getSocketByUserId(user.id);
+    const socket2 = SocketsStoreService.getSocketByUserId(partner.id);
+
+    this.eventEmitter.emit('chat.created', newChat, [socket1, socket2]);
   }
 }

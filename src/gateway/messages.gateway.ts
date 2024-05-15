@@ -15,4 +15,11 @@ export class MessagesGateway {
       this.server.to(socket).emit('onMessage', msg, chatId);
     });
   }
+
+  @OnEvent('chat.created')
+  handleChat(chat: any, sockets: string[]) {
+    sockets.forEach((socket) => {
+      this.server.to(socket).emit('onChat', chat);
+    });
+  }
 }
