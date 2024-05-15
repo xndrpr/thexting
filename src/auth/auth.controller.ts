@@ -17,6 +17,8 @@ import { Response } from 'express';
 import { AuthGuard } from './auth.guard';
 import { Session } from 'src/decorators/session.decorator';
 import { SessionDto } from 'src/dto/Session.dto';
+import { SocketsStoreService } from 'src/sockets-store/sockets-store.service';
+import { SignSocketInDto } from 'src/dto/SignSocketIn.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -60,6 +62,38 @@ export class AuthController {
   @Post('sign-out')
   async signOut(@Res({ passthrough: true }) res: Response) {
     this.cookieService.removeCookies(res);
+
+    return {
+      message: 'Success',
+      status: HttpStatus.OK,
+    };
+  }
+
+  @Post('sign-socket-in')
+  @UseGuards(AuthGuard)
+  async signSocketIn(
+    @Body() dto: SignSocketInDto,
+    @Session() session: SessionDto,
+  ) {
+    SocketsStoreService.addSocket(dto.socket, session.id);
+
+    return {
+      message: 'Success',
+      status: HttpStatus.OK,
+    };
+  }
+
+  @Post('sign-socket-out')
+  @UseGuards(AuthGuard)
+  async signSocketOut(
+    @Body() dto: SignSocketInDto,
+    @Session() session: SessionDto,
+  ) {
+    const result = SocketsStoreService.deleteSocket(dto.socket, session.id);
+
+    if (!result) {
+      throw new UnauthorizedException();
+    }
 
     return {
       message: 'Success',

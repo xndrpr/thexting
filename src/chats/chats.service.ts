@@ -20,7 +20,7 @@ export class ChatsService {
           { user: await this.usersService.findById(userId) },
           { partner: await this.usersService.findById(userId) },
         ],
-        relations: ['user', 'partner', 'messages'],
+        relations: ['user', 'partner', 'messages', 'messages.user'],
       });
     } catch {
       return [];

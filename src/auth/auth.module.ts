@@ -8,6 +8,7 @@ import { UsersService } from 'src/users/users.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from 'src/db/entities/user.entity';
 import { config } from 'dotenv';
+import { SocketsStoreService } from 'src/sockets-store/sockets-store.service';
 
 config();
 @Module({
@@ -19,7 +20,13 @@ config();
     }),
     TypeOrmModule.forFeature([User]),
   ],
-  providers: [CookieService, PasswordService, AuthService, UsersService],
+  providers: [
+    CookieService,
+    PasswordService,
+    AuthService,
+    UsersService,
+    SocketsStoreService,
+  ],
   controllers: [AuthController],
   exports: [CookieService, PasswordService],
 })

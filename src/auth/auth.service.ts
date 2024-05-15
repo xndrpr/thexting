@@ -24,11 +24,11 @@ export class AuthService {
 
     const newUser = await this.usersService.createUser(dto);
     const accessToken = await this.$jwt.signAsync(
-      { id: newUser.id, email: newUser.email },
+      { id: newUser.id, email: newUser.email, nikcname: newUser.nickname },
       { expiresIn: '15m' },
     );
     const refreshToken = await this.$jwt.signAsync(
-      { id: newUser.id, email: newUser.email },
+      { id: newUser.id, email: newUser.email, nikcname: newUser.nickname },
       { expiresIn: '7d' },
     );
 
@@ -48,11 +48,11 @@ export class AuthService {
     }
 
     const accessToken = await this.$jwt.signAsync(
-      { id: user.id, email: user.email },
+      { id: user.id, email: user.email, nikcname: user.nickname },
       { expiresIn: '15m' },
     );
     const refreshToken = await this.$jwt.signAsync(
-      { id: user.id, email: user.email },
+      { id: user.id, email: user.email, nikcname: user.nickname },
       { expiresIn: '14d' },
     );
 
