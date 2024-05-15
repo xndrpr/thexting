@@ -68,6 +68,7 @@ export class AuthService {
       {
         id: session.id,
         email: session.email,
+        nikcname: session.nickname,
       },
       { expiresIn: '15m' },
     );
