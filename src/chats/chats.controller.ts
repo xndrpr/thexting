@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   Session,
   UseGuards,
@@ -19,6 +20,12 @@ export class ChatsController {
   @UseGuards(AuthGuard)
   async getChats(@Session() session: SessionDto) {
     return await this.chatsService.getChats(session.id);
+  }
+
+  @Get('/:id')
+  @UseGuards(AuthGuard)
+  async getChat(@Session() session: SessionDto, @Param('id') chatId: number) {
+    return await this.chatsService.getChat(session, chatId);
   }
 
   @Post('/create')

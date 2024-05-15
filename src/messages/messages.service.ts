@@ -51,7 +51,15 @@ export class MessagesService {
     const socket1 = SocketsStoreService.getSocketByUserId(chat.user.id);
     const socket2 = SocketsStoreService.getSocketByUserId(chat.partner.id);
 
-    this.eventEmitter.emit('message.created', savedMessage, [socket1, socket2], chat.id);
-    return this.messagesRepository.save(savedMessage);
+    this.eventEmitter.emit(
+      'message.created',
+      savedMessage,
+      [socket1, socket2],
+      chat.id,
+    );
+    this.messagesRepository.save(savedMessage);
+
+    chat.lastMessage = savedMessage;
+    this.chatsRepository.save(chat);
   }
 }

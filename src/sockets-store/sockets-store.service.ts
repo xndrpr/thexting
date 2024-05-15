@@ -16,10 +16,6 @@ export class SocketsStoreService {
   }
 
   static getSocketByUserId(userId: number) {
-    console.log('---');
-    console.log(userId);
-    console.log(SocketsStoreService.sockets);
-    console.log('---');
     return Array.from(SocketsStoreService.sockets.entries()).find(
       ([, id]) => id === userId,
     )?.[0];

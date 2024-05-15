@@ -1,4 +1,5 @@
 import {
+  CreateDateColumn,
   Entity,
   JoinColumn,
   ManyToOne,
@@ -24,4 +25,13 @@ export class Chat {
 
   @OneToMany(() => Message, (message) => message.chat)
   messages: Message[];
+
+  @OneToOne(() => Message, (message) => message.id, {
+    cascade: true,
+  })
+  @JoinColumn()
+  lastMessage: Message;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
 }

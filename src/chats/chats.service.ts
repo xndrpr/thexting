@@ -20,11 +20,27 @@ export class ChatsService {
           { user: await this.usersService.findById(userId) },
           { partner: await this.usersService.findById(userId) },
         ],
-        relations: ['user', 'partner', 'messages', 'messages.user'],
+        relations: ['user', 'partner', 'lastMessage'],
       });
     } catch {
       return [];
     }
+  }
+
+  async getChat(session: SessionDto, chatId: number) {
+    const chat = await this.chatRepository.findOne({
+      where: [
+        { id: chatId, user: await this.usersService.findById(session.id) },
+        { id: chatId, partner: await this.usersService.findById(session.id) },
+      ],
+      relations: ['messages', 'messages.user', 'user', 'partner'],
+    });
+
+    if (!chat) {
+      throw new BadRequestException({ type: 'chat-not-found' });
+    }
+
+    return chat;
   }
 
   async createChat(session: SessionDto, dto: CreateChatDto) {
