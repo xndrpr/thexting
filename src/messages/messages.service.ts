@@ -31,9 +31,8 @@ export class MessagesService {
 
     const chat = await this.chatsRepository.findOne({
       where: { id: dto.chat },
-      relations: ['user', 'partner'],
+      relations: ['user', 'partner', 'lastMessage'],
     });
-
     if (!chat) {
       throw new BadRequestException({ type: 'chat-not-found' });
     }
@@ -51,15 +50,14 @@ export class MessagesService {
     const socket1 = SocketsStoreService.getSocketByUserId(chat.user.id);
     const socket2 = SocketsStoreService.getSocketByUserId(chat.partner.id);
 
+    chat.lastMessage = savedMessage;
+
+    await this.chatsRepository.save(chat);
     this.eventEmitter.emit(
       'message.created',
       savedMessage,
       [socket1, socket2],
       chat.id,
     );
-    this.messagesRepository.save(savedMessage);
-
-    chat.lastMessage = savedMessage;
-    this.chatsRepository.save(chat);
   }
 }
