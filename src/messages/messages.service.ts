@@ -45,6 +45,15 @@ export class MessagesService {
     message.text = dto.text;
     message.user = user;
     message.chat = chat;
+    if (dto.reply) {
+      const reply = await this.messagesRepository.findOne({
+        where: { id: dto.reply },
+      });
+      if (!reply) {
+        throw new BadRequestException({ type: 'reply-not-found' });
+      }
+      message.reply = reply;
+    }
 
     const savedMessage = this.messagesRepository.create(message);
     const socket1 = SocketsStoreService.getSocketByUserId(chat.user.id);

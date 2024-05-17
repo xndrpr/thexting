@@ -36,7 +36,13 @@ export class ChatsService {
         { id: chatId, user: await this.usersService.findById(session.id) },
         { id: chatId, partner: await this.usersService.findById(session.id) },
       ],
-      relations: ['messages', 'messages.user', 'user', 'partner'],
+      relations: [
+        'messages',
+        'messages.user',
+        'user',
+        'partner',
+        'messages.reply',
+      ],
     });
 
     if (!chat) {

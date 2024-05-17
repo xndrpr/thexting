@@ -7,9 +7,14 @@ import { MessagesModule } from './messages/messages.module';
 import { GatewayModule } from './gateway/gateway.module';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { SocketsStoreService } from './sockets-store/sockets-store.service';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
 
 @Module({
   imports: [
+    // ServeStaticModule.forRoot({
+    //   rootPath: join(__dirname, '..', '..', 'frontend', 'build'),
+    // }),
     EventEmitterModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',

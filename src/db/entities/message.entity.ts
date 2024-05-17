@@ -28,4 +28,8 @@ export class Message {
   @ManyToOne(() => Chat, (chat) => chat.messages)
   @JoinColumn()
   chat: Chat;
+
+  @OneToOne(() => Message, (message) => message.id)
+  @JoinColumn()
+  reply: Message;
 }
