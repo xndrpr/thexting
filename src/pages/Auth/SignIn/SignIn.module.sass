@@ -1,0 +1,99 @@
+.SignIn
+    background: var(--bg)
+    color: var(--text)
+    height: 100vh
+
+    background-image: url('../../../assets/bg-2.png')
+    background-size: cover
+    background-position: center
+
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    .Form
+        display: flex
+        flex-direction: column
+        gap: 0.6rem
+
+        .Title
+            text-align: center
+            font-size: 2rem
+
+        .Item
+            width: 100%
+            display: flex
+            flex-direction: column
+
+            input
+                padding: 0.6rem
+                border: none
+                border-radius: 0.4rem
+                background: var(--bg-2)
+                color: var(--text)
+
+                outline: none
+
+                color-scheme: dark
+
+        .Button
+            padding: 0.5rem 1.2rem
+            border: 1px solid var(--text)
+            border-radius: 0.4rem
+            background: var(--text)
+            color: var(--bg)
+
+            cursor: pointer
+            transition: all 0.3s
+
+            &:hover
+                background: none
+                color: var(--text)
+
+        .SignUpLink
+            text-align: center
+            color: var(--text)
+
+            a
+                color: var(--text)
+                text-decoration: underline
+
+                &:hover
+                    color: var(--text-grey)
+
+        .Items
+            display: flex
+            flex-direction: row
+            gap: 0.6rem
+
+    .OrContinue
+        margin-top: 2rem
+
+    .Google
+        width: 10rem
+        height: 2rem
+
+        display: flex
+        justify-content: center
+        align-items: center
+
+        background: var(--bg-2)
+        border: none
+        outline: none
+        border-radius: 0.4rem
+        margin-top: 1rem
+
+        transition: all 0.3s
+
+        a
+            display: flex
+            justify-content: center
+            align-items: center
+            gap: 0.5rem
+
+            text-decoration: none
+            color: var(--text)
+
+        &:hover
+            background: var(--bg-3)

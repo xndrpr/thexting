@@ -1,0 +1,243 @@
+@import '../../index.sass'
+
+.Auth
+    width: 100vw
+    height: 100vh
+    background: var(--bg)
+    color: var(--text)
+
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+
+    a
+        text-decoration: none
+        color: var(--text)
+
+        button
+            padding: 0.6rem
+            border-radius: 0.4rem
+
+            background: var(--bg-2)
+            color: var(--text)
+
+            outline: none
+            border: none
+
+            &:hover
+                background: var(--bg-3)
+                color: var(--text)
+
+.App
+    width: 100vw
+    height: 100vh
+    background: var(--bg)
+    color: var(--text)
+
+    display: flex
+
+    .Chat
+        width: 100%
+        max-width: 80%
+        padding: 2rem
+
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: space-between
+        gap: 1rem
+
+        background-image: url('../../assets/bg-2.png')
+        background-size: cover
+
+        .Profile
+            padding: 0.5rem
+            background: var(--bg-2)
+            display: flex
+            justify-content: center
+            align-items: center
+
+            gap: 0.4rem
+
+            border-radius: 0.4rem
+
+            .Avatar
+                background: var(--bg-3)
+                width: 2rem
+                height: 2rem
+                border-radius: 100%
+
+        .Messages
+            width: 70%
+            max-width: 70%
+
+            display: flex
+            flex: 1
+            flex-direction: column
+            justify-content: flex-start
+            gap: 1rem
+
+            overflow-y: auto
+
+            .Message
+                display: flex
+                gap: 0.4rem
+
+                .Reply
+                    display: none
+                    border-left: 0.2rem solid var(--bg-3)
+                    padding-left: 0.4rem
+
+                    background: var(--bg-2)
+                    text-align: left
+
+                    max-width: 100%
+                    white-space: nowrap
+                    overflow: hidden
+                    text-overflow: ellipsis
+
+                    border-radius: 0.4rem
+
+                    &.Has
+                        display: block
+                        padding: 0.4rem 0.6rem
+
+                .Avatar
+                    width: 2rem
+                    height: 2rem
+                    border-radius: 100%
+                    background: var(--bg-3)
+
+                    &.Has
+                        margin-top: 2.1rem
+
+                .Content
+                    position: relative
+                    max-width: 80%
+                    display: flex
+                    flex-direction: column
+                    gap: 0.4rem
+
+                    .Top
+                        display: flex
+                        gap: 0.4rem
+
+                        .Name
+                            font-weight: bold
+
+                        .Time
+                            color: var(--text-grey)
+
+                    .Text
+                        font-weight: normal
+                        white-space: pre-wrap
+                        word-wrap: normal
+
+                    .Hover
+                        position: absolute
+                        bottom: 0
+                        right: 0
+                        opacity: 0
+                        transition: all 0.3s
+
+                    .Active
+                        position: absolute
+                        bottom: 0
+                        right: 0
+                        opacity: 0
+                        transition: all 0.3s
+
+                &.Me
+                    flex-direction: row-reverse
+                    text-align: right
+
+                    .Avatar
+                        background: var(--blue)
+
+                    .Content
+                        text-align: right
+
+                        .Top
+                            flex-direction: row-reverse
+
+                        .Hover
+                            right: auto
+                            left: 0
+
+                        .Active
+                            right: auto
+                            left: 0
+
+                &:hover
+                    .Content
+                        .Hover
+                            opacity: 1
+
+                &:active
+                    .Content
+                        .Active
+                            opacity: 1
+
+        .Input
+            position: relative
+            width: 70%
+
+            .ReplyTo
+                display: flex
+                justify-content: space-between
+                align-items: center
+
+                p
+                    border-left: 0.2rem solid var(--bg-3)
+                    padding-left: 0.4rem
+
+                    background: var(--bg-2)
+                    text-align: left
+
+                    max-width: 100%
+                    white-space: nowrap
+                    overflow: hidden
+                    text-overflow: ellipsis
+                    margin: 1rem
+
+            textarea
+                width: 100%
+                min-height: 2rem
+
+                resize: none
+
+                outline: none
+                border: none
+
+                padding: 0.6rem
+                border-radius: 0.4rem
+
+                background: var(--bg-2)
+                color: var(--text)
+
+            button
+                position: absolute
+                bottom: 0
+                right: 0
+                padding: 0.6rem
+                border-radius: 0.4rem
+
+                background: none
+                color: var(--text)
+
+                outline: none
+                border: none
+
+                margin: 0.25rem 0rem
+
+                svg
+                    transition: all 0.3s
+
+                &:hover
+                    svg
+                        fill: var(--text-grey)
+
+                &:active
+                    svg
+                        fill: var(--text)
