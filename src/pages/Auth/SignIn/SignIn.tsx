@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 export default function SignIn() {
   const { store } = useContext(Context);
   const navigate = useNavigate();
-  
+
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -16,11 +16,11 @@ export default function SignIn() {
 
     const body = {
       email,
-      password
+      password,
     };
     const res = await ApiService.signIn(body);
     if (res) {
-      localStorage.setItem("token", res.data);
+      localStorage.setItem("token", res.data.data);
       window.location.href = "/app";
     }
   }
@@ -37,7 +37,7 @@ export default function SignIn() {
             id: session.data.data.id,
             nickname: session.data.data.nickname,
           });
-          navigate('/app')
+          navigate("/app");
         } else {
           store.setAuth(false);
         }
@@ -54,12 +54,24 @@ export default function SignIn() {
         <p className={m.Title}>Sign In</p>
         <div className={m.Item}>
           <label htmlFor="email">Email *</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)}  placeholder="Enter your email..." type="email" id="email" />
+          <input
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email..."
+            type="email"
+            id="email"
+          />
         </div>
 
         <div className={m.Item}>
           <label htmlFor="password">Password *</label>
-          <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="●●●●●●●●●●" type="password" id="password" />
+          <input
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="●●●●●●●●●●"
+            type="password"
+            id="password"
+          />
         </div>
         <button className={m.Button} type="submit">
           Sign in

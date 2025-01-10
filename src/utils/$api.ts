@@ -1,12 +1,13 @@
-import axios from 'axios';
-import { ApiService } from '../services/ApiService';
+import axios from "axios";
+import { ApiService } from "../services/ApiService";
 
+axios.defaults.withCredentials = true;
 export const $api = axios.create({
-  baseURL: 'http://localhost:6100/api',
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-  withCredentials: true
+  withCredentials: true,
 });
 
 $api.interceptors.response.use(
@@ -20,8 +21,7 @@ $api.interceptors.response.use(
       try {
         await ApiService.refreshToken();
         return $api(originalRequest);
-      } catch (error) {
-      }
+      } catch (error) {}
     }
   }
 );
