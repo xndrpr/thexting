@@ -13,6 +13,14 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
+    "paths": {
+      "@/*": [
+        "./src/*",
+      ],
+      "@assets/*": [
+        "./src/assets/*",
+      ]
+    },
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
