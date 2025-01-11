@@ -30,18 +30,7 @@ export default function Main() {
           </p>
         </div>
         <a className={m.GetStartedBtnLink} href="/sign-up">
-          <button className={m.GetStartedBtn}>
-            Get started{" "}
-            <svg
-              width="8"
-              height="13"
-              viewBox="0 0 8 13"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M1 1L6.5 6.5L1 12" stroke="black" stroke-width="2" />
-            </svg>
-          </button>
+          <button className={m.GetStartedBtn}>Get started </button>
         </a>
       </div>
       <div className={m.Footer}>

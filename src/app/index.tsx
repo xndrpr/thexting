@@ -1,14 +1,14 @@
 import ReactDOM from "react-dom/client";
-import "./index.sass";
+import "@/index.sass";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import SignIn from "./pages/auth/sign-in";
-import SignUp from "./pages/auth/sign-up";
-import Chat from "./pages/chat";
-import Error404 from "./pages/errors";
-import Store from "./utils/store";
+import SignIn from "@/pages/auth/sign-in";
+import SignUp from "@/pages/auth/sign-up";
+import Chat from "@/pages/chat";
+import Error404 from "@/pages/errors";
+import Store from "@/utils/store";
 import { createContext } from "react";
-import { $socket, SocketContext } from "./utils/$socket";
-import Main from "./pages/main";
+import { $socket, SocketContext } from "@/utils/$socket";
+import Main from "@/pages/main";
 
 const router = createBrowserRouter([
   {

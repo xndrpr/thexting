@@ -2,13 +2,17 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.sass";
 import Sidebar from "../../components/sidebar";
 import { observer } from "mobx-react-lite";
-import { Context } from "../..";
+import { Context } from "../../app";
 import { ApiService } from "../../api/api.service";
 import { IMessage } from "../../types/IMessage";
 import { SocketContext } from "../../utils/$socket";
 import { useParams } from "react-router-dom";
 import { formatRelative } from "date-fns";
 import { enCA as lcl } from "date-fns/locale";
+import ReplyIcon from "@assets/icons/reply.svg?react";
+import ReplyActiveIcon from "@assets/icons/reply-active.svg?react";
+import SendIcon from "@assets/icons/send.svg?react";
+import SendActiveIcon from "@assets/icons/send-active.svg?react";
 
 function Chat() {
   const { store } = useContext(Context);
@@ -196,29 +200,12 @@ function Chat() {
                       </div>
                       <div className={styles.Text}>{message.text}</div>
 
-                      <svg
-                        className={styles.Hover}
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        viewBox="0 0 16 16"
-                        onClick={() => {
-                          console.log("reply", message);
-                        }}
-                      >
-                        <path d="M6.598 5.013a.144.144 0 0 1 .202.134V6.3a.5.5 0 0 0 .5.5c.667 0 2.013.005 3.3.822.984.624 1.99 1.76 2.595 3.876-1.02-.983-2.185-1.516-3.205-1.799a8.7 8.7 0 0 0-1.921-.306 7 7 0 0 0-.798.008h-.013l-.005.001h-.001L7.3 9.9l-.05-.498a.5.5 0 0 0-.45.498v1.153c0 .108-.11.176-.202.134L2.614 8.254l-.042-.028a.147.147 0 0 1 0-.252l.042-.028zM7.8 10.386q.103 0 .223.006c.434.02 1.034.086 1.7.271 1.326.368 2.896 1.202 3.94 3.08a.5.5 0 0 0 .933-.305c-.464-3.71-1.886-5.662-3.46-6.66-1.245-.79-2.527-.942-3.336-.971v-.66a1.144 1.144 0 0 0-1.767-.96l-3.994 2.94a1.147 1.147 0 0 0 0 1.946l3.994 2.94a1.144 1.144 0 0 0 1.767-.96z" />
-                      </svg>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        fill="currentColor"
-                        className={styles.Active}
-                        viewBox="0 0 16 16"
-                      >
-                        <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
-                      </svg>
+                      <div className={styles.Hover}>
+                        <ReplyIcon />
+                      </div>
+                      <div className={styles.Active}>
+                        <ReplyActiveIcon />
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -245,30 +232,7 @@ function Chat() {
                   placeholder={`Message ${store.selectedChat?.partner.nickname}...`}
                 />
                 <button onClick={sendMessage}>
-                  {message.length > 0 ? (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z" />
-                    </svg>
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="currentColor"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
-                      />
-                    </svg>
-                  )}
+                  {message.length > 0 ? <SendActiveIcon /> : <SendIcon />}
                 </button>
               </div>
             </div>

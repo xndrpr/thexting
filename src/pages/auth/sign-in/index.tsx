@@ -1,9 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import styles from "./styles.module.sass";
 import { ApiService } from "../../../api/api.service";
-import { Context } from "../../..";
+import { Context } from "../../../app";
 import { useNavigate } from "react-router-dom";
-import GoogleIcon from "@assets/icons/google-icon.svg?react";
+import GoogleIcon from "@assets/icons/google.svg?react";
 
 export default function SignIn() {
   const { store } = useContext(Context);

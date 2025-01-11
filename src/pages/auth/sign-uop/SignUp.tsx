@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import styles from "./styles.module.sass";
+import m from "./SignUp.module.sass";
 import { ApiService } from "../../../api/api.service";
 import { Context } from "../../../app";
 import { useNavigate } from "react-router-dom";
@@ -61,10 +61,10 @@ export default function SignUp() {
   }, [navigate, store]);
 
   return (
-    <div className={styles.SignUp}>
-      <form className={styles.Form} onSubmit={handleSubmit}>
-        <p className={styles.Title}>Sign Up</p>
-        <div className={styles.Item}>
+    <div className={m.SignUp}>
+      <form className={m.Form} onSubmit={handleSubmit}>
+        <p className={m.Title}>Sign Up</p>
+        <div className={m.Item}>
           <label htmlFor="email">Email *</label>
           <input
             value={email}
@@ -74,7 +74,7 @@ export default function SignUp() {
             id="email"
           />
         </div>
-        <div className={styles.Item}>
+        <div className={m.Item}>
           <label htmlFor="email">Nickname *</label>
           <input
             value={nickname}
@@ -84,8 +84,8 @@ export default function SignUp() {
             id="email"
           />
         </div>
-        <div className={styles.Items}>
-          <div className={styles.Item}>
+        <div className={m.Items}>
+          <div className={m.Item}>
             <label htmlFor="birthday">Date of birthday *</label>
             <input
               type="date"
@@ -99,13 +99,11 @@ export default function SignUp() {
               }
             />
           </div>
-          <div className={styles.Item}>
+          <div className={m.Item}>
             <label htmlFor="gender">Gender*</label>
-            <div className={styles.Gender} id="gender">
+            <div className={m.Gender} id="gender">
               <label
-                className={`${
-                  selectedOption === "Male" ? styles.CheckedM : styles.M
-                }`}
+                className={`${selectedOption === "Male" ? m.CheckedM : m.M}`}
               >
                 <input
                   type="radio"
@@ -116,9 +114,7 @@ export default function SignUp() {
                 Male
               </label>
               <label
-                className={`${
-                  selectedOption === "Female" ? styles.CheckedF : styles.F
-                }`}
+                className={`${selectedOption === "Female" ? m.CheckedF : m.F}`}
               >
                 <input
                   type="radio"
@@ -131,8 +127,8 @@ export default function SignUp() {
             </div>
           </div>
         </div>
-        <div className={styles.Items}>
-          <div className={styles.Item}>
+        <div className={m.Items}>
+          <div className={m.Item}>
             <label htmlFor="password">Password *</label>
             <input
               value={password}
@@ -142,7 +138,7 @@ export default function SignUp() {
               id="password"
             />
           </div>
-          <div className={styles.Item}>
+          <div className={m.Item}>
             <label htmlFor="confirm">Confirm Password *</label>
             <input
               value={confirmPassword}
@@ -153,15 +149,15 @@ export default function SignUp() {
             />
           </div>
         </div>
-        <button className={styles.Button} type="submit">
+        <button className={m.Button} type="submit">
           Create My Account
         </button>
-        <p className={styles.SignInLink}>
+        <p className={m.SignInLink}>
           Already have an account? <a href="/sign-in">Sign In</a>
         </p>
       </form>
-      <p className={styles.OrContinue}>or continue with</p>
-      <button className={styles.Google}>
+      <p className={m.OrContinue}>or continue with</p>
+      <button className={m.Google}>
         <a href="/sign-up">
           <GoogleIcon />
           Google
