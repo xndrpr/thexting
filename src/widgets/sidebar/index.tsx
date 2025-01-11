@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import styles from "./styles.module.sass";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../app";
-import { IChat } from "../../types/IChat";
+import { IChat } from "../../model/chat";
 import { ApiService } from "../../api/api.service";
 import { useNavigate } from "react-router-dom";
 

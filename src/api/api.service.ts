@@ -1,6 +1,6 @@
 import axios from "axios";
-import { $api } from "../utils/$api";
-import { IChat } from "../types/IChat";
+import { $api } from "../shared/$api";
+import { IChat } from "../model/chat";
 
 export class ApiService {
   static async refreshToken() {

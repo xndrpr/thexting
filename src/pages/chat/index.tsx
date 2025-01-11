@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.sass";
-import Sidebar from "../../components/sidebar";
+import Sidebar from "../../widgets/sidebar";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../app";
 import { ApiService } from "../../api/api.service";
-import { IMessage } from "../../types/IMessage";
-import { SocketContext } from "../../utils/$socket";
+import { IMessage } from "../../model/message";
+import { SocketContext } from "../../shared/$socket";
 import { useParams } from "react-router-dom";
 import { formatRelative } from "date-fns";
 import { enCA as lcl } from "date-fns/locale";

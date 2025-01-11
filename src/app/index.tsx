@@ -5,9 +5,9 @@ import SignIn from "@/pages/auth/sign-in";
 import SignUp from "@/pages/auth/sign-up";
 import Chat from "@/pages/chat";
 import Error404 from "@/pages/errors";
-import Store from "@/utils/store";
+import Store from "@/shared/store";
 import { createContext } from "react";
-import { $socket, SocketContext } from "@/utils/$socket";
+import { $socket, SocketContext } from "@/shared/$socket";
 import Main from "@/pages/main";
 
 const router = createBrowserRouter([

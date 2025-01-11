@@ -1,6 +1,6 @@
-import { makeAutoObservable } from 'mobx';
-import { IUser } from '../types/IUser';
-import { IChat } from '../types/IChat';
+import { makeAutoObservable } from "mobx";
+import { IUser } from "../model/user";
+import { IChat } from "../model/chat";
 
 export default class Store {
   auth: boolean = false;
