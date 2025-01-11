@@ -1,16 +1,16 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import m from "./App.module.sass";
-import Sidebar from "../../components/App/Sidebar";
+import styles from "./styles.module.sass";
+import Sidebar from "../../components/sidebar";
 import { observer } from "mobx-react-lite";
 import { Context } from "../..";
-import { ApiService } from "../../services/ApiService";
+import { ApiService } from "../../api/api.service";
 import { IMessage } from "../../types/IMessage";
 import { SocketContext } from "../../utils/$socket";
 import { useParams } from "react-router-dom";
 import { formatRelative } from "date-fns";
 import { enCA as lcl } from "date-fns/locale";
 
-function App() {
+function Chat() {
   const { store } = useContext(Context);
   const $socket = useContext(SocketContext);
 
@@ -145,24 +145,24 @@ function App() {
   return (
     <div>
       {store.auth ? (
-        <div className={m.App}>
+        <div className={styles.App}>
           <Sidebar />
           {store.selectedChat && (
-            <div className={m.Chat}>
-              <div className={m.Profile}>
-                <div className={m.Avatar} />
-                <div className={m.Name}>
+            <div className={styles.Chat}>
+              <div className={styles.Profile}>
+                <div className={styles.Avatar} />
+                <div className={styles.Name}>
                   {store.selectedChat?.partner.id === store.user?.id
                     ? store.selectedChat?.user.nickname
                     : store.selectedChat?.partner.nickname}
                 </div>
               </div>
 
-              <div className={m.Messages}>
+              <div className={styles.Messages}>
                 {[...messages]?.map((message) => (
                   <div
-                    className={`${m.Message} ${
-                      message.user.id === store.user?.id ? m.Me : ""
+                    className={`${styles.Message} ${
+                      message.user.id === store.user?.id ? styles.Me : ""
                     }`}
                     onClick={() => {
                       setReplyMessage(message);
@@ -172,30 +172,32 @@ function App() {
                     }}
                   >
                     <div
-                      className={`${m.Avatar} ${
-                        message.reply?.text ? m.Has : ""
+                      className={`${styles.Avatar} ${
+                        message.reply?.text ? styles.Has : ""
                       }`}
                     />
-                    <div className={m.Content}>
+                    <div className={styles.Content}>
                       <div
-                        className={`${m.Reply} ${
-                          message.reply?.text ? m.Has : ""
+                        className={`${styles.Reply} ${
+                          message.reply?.text ? styles.Has : ""
                         }`}
                       >
                         {message.reply?.text || ""}
                       </div>
-                      <div className={m.Top}>
-                        <div className={m.Name}>
+                      <div className={styles.Top}>
+                        <div className={styles.Name}>
                           {message.user.id === store.user?.id
                             ? "You"
                             : message.user.nickname}
                         </div>
-                        <div className={m.Time}>{createdToString(message)}</div>
+                        <div className={styles.Time}>
+                          {createdToString(message)}
+                        </div>
                       </div>
-                      <div className={m.Text}>{message.text}</div>
+                      <div className={styles.Text}>{message.text}</div>
 
                       <svg
-                        className={m.Hover}
+                        className={styles.Hover}
                         xmlns="http://www.w3.org/2000/svg"
                         width="16"
                         height="16"
@@ -212,7 +214,7 @@ function App() {
                         width="16"
                         height="16"
                         fill="currentColor"
-                        className={m.Active}
+                        className={styles.Active}
                         viewBox="0 0 16 16"
                       >
                         <path d="M5.921 11.9 1.353 8.62a.72.72 0 0 1 0-1.238L5.921 4.1A.716.716 0 0 1 7 4.719V6c1.5 0 6 0 7 8-2.5-4.5-7-4-7-4v1.281c0 .56-.606.898-1.079.62z" />
@@ -223,9 +225,9 @@ function App() {
                 <div ref={chatEnd} />
               </div>
 
-              <div className={m.Input}>
+              <div className={styles.Input}>
                 <div
-                  className={m.ReplyTo}
+                  className={styles.ReplyTo}
                   onClick={() => setReplyMessage(null)}
                 >
                   <p>{replyMessage?.text}</p>
@@ -277,7 +279,7 @@ function App() {
           <p>Loading...</p>
         </div>
       ) : (
-        <div className={m.Auth}>
+        <div className={styles.Auth}>
           <p>No Auth</p>
           <a href="/sign-in">
             <button>Sign in</button>
@@ -288,4 +290,4 @@ function App() {
   );
 }
 
-export default observer(App);
+export default observer(Chat);

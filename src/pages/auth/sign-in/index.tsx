@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import m from "./SignIn.module.sass";
-import { ApiService } from "../../../services/ApiService";
+import styles from "./styles.module.sass";
+import { ApiService } from "../../../api/api.service";
 import { Context } from "../../..";
 import { useNavigate } from "react-router-dom";
 import GoogleIcon from "@assets/icons/google-icon.svg?react";
@@ -50,10 +50,10 @@ export default function SignIn() {
   }, [navigate, store]);
 
   return (
-    <div className={m.SignIn}>
-      <form className={m.Form} onSubmit={handleSubmit}>
-        <p className={m.Title}>Sign In</p>
-        <div className={m.Item}>
+    <div className={styles.SignIn}>
+      <form className={styles.Form} onSubmit={handleSubmit}>
+        <p className={styles.Title}>Sign In</p>
+        <div className={styles.Item}>
           <label htmlFor="email">Email *</label>
           <input
             value={email}
@@ -64,7 +64,7 @@ export default function SignIn() {
           />
         </div>
 
-        <div className={m.Item}>
+        <div className={styles.Item}>
           <label htmlFor="password">Password *</label>
           <input
             value={password}
@@ -74,15 +74,15 @@ export default function SignIn() {
             id="password"
           />
         </div>
-        <button className={m.Button} type="submit">
+        <button className={styles.Button} type="submit">
           Sign in
         </button>
-        <p className={m.SignUpLink}>
+        <p className={styles.SignUpLink}>
           Don't have an account? <a href="/sign-up">Sign Up</a>
         </p>
       </form>
-      <p className={m.OrContinue}>or continue with</p>
-      <button className={m.Google}>
+      <p className={styles.OrContinue}>or continue with</p>
+      <button className={styles.Google}>
         <a href="/sign-up">
           <GoogleIcon />
           Google

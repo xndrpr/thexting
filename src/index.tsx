@@ -1,14 +1,14 @@
 import ReactDOM from "react-dom/client";
 import "./index.sass";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Main from "./pages/Main/Main";
-import SignIn from "./pages/Auth/SignIn/SignIn";
-import SignUp from "./pages/Auth/SignUp/SignUp";
-import App from "./pages/App/App";
-import Error404 from "./pages/Errors/Error404";
+import SignIn from "./pages/auth/sign-in";
+import SignUp from "./pages/auth/sign-up";
+import Chat from "./pages/chat";
+import Error404 from "./pages/errors";
 import Store from "./utils/store";
 import { createContext } from "react";
 import { $socket, SocketContext } from "./utils/$socket";
+import Main from "./pages/main";
 
 const router = createBrowserRouter([
   {
@@ -25,11 +25,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/app",
-    element: <App />,
+    element: <Chat />,
   },
   {
     path: "/app/:chatId",
-    element: <App />,
+    element: <Chat />,
   },
   {
     path: "*",
@@ -46,7 +46,7 @@ interface State {
 const store = new Store();
 export const Context = createContext<State>({ store });
 root.render(
-  <Context.Provider value={{store}}>
+  <Context.Provider value={{ store }}>
     <SocketContext.Provider value={$socket}>
       <RouterProvider router={router} />
     </SocketContext.Provider>

@@ -1,5 +1,4 @@
-import React from "react";
-import m from "./Main.module.sass";
+import m from "./main.module.sass";
 
 export default function Main() {
   return (
@@ -11,7 +10,6 @@ export default function Main() {
           </p>
           <div className={m.Auth}>
             <a href="/sign-in">
-              {" "}
               <button className={m.SignInBtn}>Sign in</button>
             </a>
 
@@ -27,10 +25,11 @@ export default function Main() {
         </div>
         <div className={m.Text}>
           <p>
-            Try thexting. <b>A modern way of texting</b>, Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Try thexting. <b>A modern way of texting</b>, Lorem ipsum dolor sit
+            amet consectetur adipisicing elit.
           </p>
         </div>
-        <a  className={m.GetStartedBtnLink} href="/sign-up">
+        <a className={m.GetStartedBtnLink} href="/sign-up">
           <button className={m.GetStartedBtn}>
             Get started{" "}
             <svg
