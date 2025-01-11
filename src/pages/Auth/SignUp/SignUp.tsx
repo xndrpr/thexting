@@ -32,7 +32,7 @@ export default function SignUp() {
     const res = await ApiService.signUp(body);
     if (res) {
       localStorage.setItem("token", res.data);
-      window.location.href = "/app";
+      navigate("/app");
     }
   }
 
@@ -48,7 +48,7 @@ export default function SignUp() {
             id: session.data.data.id,
             nickname: session.data.data.nickname,
           });
-          navigate('/app')
+          navigate("/app");
         } else {
           store.setAuth(false);
         }

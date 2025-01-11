@@ -5,7 +5,7 @@ import { IChat } from "../types/IChat";
 export class ApiService {
   static async refreshToken() {
     const res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/auth/refresh`,
+      `${import.meta.env.VITE_API_URL}/auth/refresh`,
       {
         withCredentials: true,
       }
