@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import styles from "./styles.module.sass";
 import Sidebar from "../../widgets/sidebar";
 import { observer } from "mobx-react-lite";
-import { Context } from "../../app";
+import { Context } from "@/app";
 import { ApiService } from "../../api/api.service";
 import { IMessage } from "../../model/message";
 import { SocketContext } from "../../shared/$socket";
